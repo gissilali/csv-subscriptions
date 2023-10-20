@@ -1,9 +1,9 @@
 const express = require("express");
-const { dbConnection } = require("./src/database/connections");
-const dbConfig = require("./src/database/config");
+const { dbConnection } = require("./database/connections");
+const dbConfig = require("./database/config");
 const mongoose = require("mongoose");
-const subscriptionsRouter = require("./src/routes");
-const path = require('path')
+const subscriptionsRouter = require("./routes/subscriptions.routes");
+const path = require("path");
 
 global.APP_ROOT = path.resolve(__dirname);
 

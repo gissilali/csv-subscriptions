@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const { findByMinPrice } = require("../src/useCases/subscriptionsUseCases");
 const { seed } = require("./database/seeder");
 
-describe("Subscription", () => {
+describe("Subscriptions", () => {
     beforeAll(async () => {
         await (await testDbConnection(mongoose)).connect();
         await seed();
@@ -24,17 +24,16 @@ describe("Subscription", () => {
         expect(dataCount).toBe(15);
     }, 10000);
 
-    it("should handle database query errors", async () => {
-        expect(true).toBe(true);
-    }, 10000);
-
     it("should export subscriptions to a CSV file", async () => {
+        const subscriptions = [{ name: 'Sub1', planPrice: 60 }, { name: 'Sub2', planPrice: 70 }];
+
+        await exportSubscriptionsToCSV(subscriptions);
+
+        assert(fakeCsvWriter.writeRecords.calledOnce);
+        assert.deepStrictEqual(fakeCsvWriter.writeRecords.getCall(0).args[0], subscriptions);
         expect(true).toBe(true);
     }, 10000);
 
-    it("should handle CSV export errors", async () => {
-        expect(true).toBe(true);
-    }, 10000);
 
     afterAll(async () => await (await testDbConnection(mongoose)).closeDatabase(), 15000);
 });
