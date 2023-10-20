@@ -3,7 +3,7 @@ const handleExport = async (req, res, next) => {
     try {
         const cursor = await findByMinPrice(req.query.minPrice || 50);
         const filename = new Date().getTime() / 1000;
-        const csvWriter = createWriter(filename);
+        const csvWriter = createWriter(`${APP_ROOT}/public/${filename}_subscription.csv`);
         await cursor.eachAsync(data => {
             exportToCSV(
                 {

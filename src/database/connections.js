@@ -30,15 +30,6 @@ const dbConnection = (mongoose, config) => {
     mongoose.disconnect();
   });
 
-  mongoose.connection.on("disconnected", () => {
-    console.error(
-      `MongoDB disconnected! Reconnecting in ${
-        config.options.reconnectInterval / 1000
-      }s...`
-    );
-    setTimeout(() => connect(), config.options.reconnectInterval);
-  });
-
   return {
     connect,
     disconnect,

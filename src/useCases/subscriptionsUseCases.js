@@ -5,9 +5,9 @@ const exportToCSV = async (data, csvWriter) => {
     await csvWriter.writeRecords([data])
 };
 
-const createWriter = (filename) => {
+const createWriter = (filePath) => {
     return createObjectCsvWriter({
-        path: `${APP_ROOT}/public/${filename}_subscription.csv`,
+        path: filePath,
         header: [
             {id: "business_id", title: "business_id"},
             {id: "email", title: "email"},
