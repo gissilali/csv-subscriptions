@@ -2,6 +2,7 @@ const subscriptionModel = require("../models/subscription");
 const planModel = require("../models/plan");
 const { faker } = require("@faker-js/faker");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const {
   PAYMENT_PLATFORM_PAYPAL,
